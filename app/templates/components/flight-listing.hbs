@@ -8,23 +8,5 @@
 
 
 {{#each sortedFlights as |flightUnit|}}
-  <article class="listing">
-    <img src="{{flightUnit.airlineLogo}}" alt=""> 
-    <h3>{{flightUnit.airline}}</h3>
-    <div class="detail data">
-      <span>Departing:</span> {{flightUnit.origin}}  
-	<br/>{{date-Formatter flightUnit.departure}}
-    </div>
-    <div class="detail data">
-      <span>Arriving:</span>{{flightUnit.destination}}  
-	<br/>{{date-Formatter flightUnit.arrival}}
-    </div>
-    <div class="detail data">
-      {{flight-stops flightUnit.stops}}
-    </div>
-    <div class="detail data">
-      <span>Price:</span><b>${{money-formatter flightUnit.price}}</b>
-    </div>
-  	<button type="button" class="btn btn-primary">Select</button>
-  </article>
- {{/each}}
+  	{{flight-unit flight=flightUnit}}
+{{/each}}

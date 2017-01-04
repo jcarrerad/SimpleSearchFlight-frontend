@@ -1,0 +1,50 @@
+  <article class="listing">
+    <img src="{{flight.airlineLogo}}" alt=""> 
+    <h3>{{flight.airline}}</h3>
+    <div class="detail data">
+      <span>Departing:</span> {{flight.origin}}  
+	<br/>{{date-Formatter flight.departure}}
+    </div>
+    <div class="detail data">
+      <span>Arriving:</span>{{flight.destination}}  
+	<br/>{{date-Formatter flight.arrival}}
+    </div>
+    <div class="detail data">
+      {{flight-stops flight.stops}}
+    </div>
+    <div class="detail data">
+      <span>Fare:</span><b>${{money-formatter flight.price}}</b>
+    </div>
+    
+	{{#if isExpanded}}
+		<div class="detail">
+			<span>Flight#:</span> {{flight.flightCode}}
+		</div>
+		<div class="detail">
+			<span>SeatClass:</span> {{flight.seatClass}}
+		</div>
+		<div class="detail">
+			<span>Travel Time:</span> {{flight.travelTime}}
+		</div>
+		<div class="detail">
+			<span>Aircraft:</span> Airbus
+		</div>
+		<div class="detail">
+			<span>Capacity:</span> 185
+		</div>
+		<div class="detail">
+			<span>Otro:</span> otro
+		</div>
+	{{/if}}
+    
+    	<div>
+		<button type="button" {{action "toggleExpand"}} class="btn btn-primary">
+			{{#if isExpanded}}
+				Hide Detalis
+			{{else}}
+				Show Details
+			{{/if}}
+		</button>
+	  	<button type="button"  class="btn btn-primary">Book Flight</button>	
+	</div>
+  </article>
