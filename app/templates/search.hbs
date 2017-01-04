@@ -1,0 +1,43 @@
+<div class="jumbo">
+  <h3>Select your destination and traveling dates.</h3>
+</div>
+
+	<div class="row">
+		<div class="form-group col-xs-4">
+		        <label for='flyFrom'>Flying from</label>
+			   {{#my-auto-complete options=codes selectedValue=model.origin placeHolderText="Find by code or name" 					inputClass="my-auto-complete" noMesssagePlaceHolderText="Nothing found" as |resultado|}}
+			     <p>{{resultado.code}} - {{resultado.text}}</p>
+			   {{/my-auto-complete}}
+			   {{#if model.errors.flyFrom}}
+			          <span class="help-block">{{model.errors.flyFrom}}</span>
+			    {{/if}}
+			
+		 </div>
+		 <div class="form-group col-xs-4">
+			 <label for='flyTo'>Flying to</label>
+  	     		   {{#my-auto-complete options=codes selectedValue=model.destination placeHolderText="Find by code or name" 					inputClass="my-auto-complete" noMesssagePlaceHolderText="Nothing found" as |resultado|}}
+  			     <p>{{resultado.code}} - {{resultado.text}}</p>
+  			   {{/my-auto-complete}}
+			   {{#if model.errors.flyTo}}
+			          <span class="help-block">{{model.errors.flyTo}}</span>
+			    {{/if}}
+		  </div>
+	 </div>
+	 
+	 <div class="row">
+	  	<div class="form-group col-xs-2">
+	  	        <label for='departure'>Departing</label>
+			  {{date-picker value=model.date date=departure valueFormat='YYYY-MM-DD' class="form-control"}}
+			   {{#if model.errors.date}}
+			          <span class="help-block">{{model.errors.date}}</span>
+			    {{/if}}
+	  	 </div>
+	 
+	 </div>
+	 
+	 <!-- <p>{{model.origin}} - {{model.destination}} - {{model.date}}</p> -->
+		
+	  <button {{action "routeToFlights" model}} class="button">Search Flights</button>
+
+	  
+	 
