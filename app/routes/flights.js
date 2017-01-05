@@ -8,11 +8,20 @@ export default Ember.Route.extend({
 	   destination: {
 	     refreshModel: true
 	   },
-	   date: {
+	   departure: {
+	     refreshModel: true
+	   },
+	   return: {
+	     refreshModel: true
+	   },
+	   adults: {
+	     refreshModel: true
+	   },
+	   childs: {
 	     refreshModel: true
 	   }
 	 },
 	model: function(params) {
-		return this.get('store').query('flight',{origin: params.origin,destination: params.destination,date: params.date});
+		return this.get('store').query('flight',{origin: params.origin,destination: params.destination,date: params.departure});
 	}
 });
