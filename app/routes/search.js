@@ -107,7 +107,7 @@ export default Ember.Route.extend({
 	     			 						     destination: model.destination, 
 	     			        					     departure: model.departure,
 	     		 	 						     adults: model.adults,
-	     		 							     childs: model.children
+	     		 							     childs: model.children,
 	     		 							 	 roundTrip: isRoundTrip}});
 			}
 

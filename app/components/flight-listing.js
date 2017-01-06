@@ -7,4 +7,10 @@ export default Ember.Component.extend({
 	sortDefinition: Ember.computed('sortBy', function() {
 	  return [ this.get('sortBy') ];
 	}),
+	actions: {
+	    selectFlight(flight){
+		    console.log('action on flight-listing');
+		    this.sendAction('selectFlight',flight);
+		},
+	},
 });

@@ -4,7 +4,8 @@ var Criteria = Ember.Object.extend({
     return : "",
     adults: 0,
     children: 0,
-    roundTrip: false
+    roundTrip: false,
+    selectedFlight: ""
 });
 export default Ember.Route.extend({
 	 queryParams: {
@@ -36,16 +37,16 @@ export default Ember.Route.extend({
 		
 		var origin = this.get('store').find('airport', params.origin);
 		var destination = this.get('store').find('airport', params.destination);
-
-		Criteria.destination = params.destination;
-		Criteria.departure = params.departure;
-		Criteria.return = params.return;
-		Criteria.adults = params.adults;
-		Criteria.children = params.childs;
-		Criteria.roundTrip = params.roundTrip;
+		var criteria = Criteria.create();
+		criteria.destination = params.destination;
+		criteria.departure = params.departure;
+		criteria.return = params.return;
+		criteria.adults = params.adults;
+		criteria.children = params.childs;
+		criteria.roundTrip = params.roundTrip;
 		 return Ember.RSVP.hash({
             model: flights,
-            criteria: Criteria,
+            criteria: criteria,
             origin: origin,
             destination: destination
         });
@@ -55,4 +56,11 @@ export default Ember.Route.extend({
         controller.set("origin", hash.origin);
         controller.set("destination", hash.destination);
     },
+	actions: {
+	    selectFlight(flight){
+		    console.log('action on fights route');
+		    this.controller.get('criteria').set('selectedFlight',flight.id);
+		},
+	}
+    
 });

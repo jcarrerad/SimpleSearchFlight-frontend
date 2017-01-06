@@ -17,9 +17,12 @@
       </span>
     </div>
 
-
-    <h3>Select your Flight</h3>
-
+    {{#if (eq criteria.selectedFlight '')}}
+    		<h3>Select your Flight</h3>
+    {{else}}
+    		<h3>Selected Flight</h3>
+		{{criteria.selectedFlight}}
+    {{/if}}
 
   <!--<div class="left">
          <label for='order' class="sr-only">Order</label>
@@ -37,5 +40,5 @@
 
 </div>
 
-{{flight-listing flights=model}}  
+{{flight-listing flights=model selectFlight="selectFlight"}}  
 
