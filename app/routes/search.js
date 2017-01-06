@@ -96,17 +96,19 @@ export default Ember.Route.extend({
 			    
 	   	      	this.transitionTo('flights', { queryParams: { origin: model.origin, 
 	   			 						     destination: model.destination, 
-	   			        					     departure: model.departure,
+	   			        					 departure: model.departure,
 										     return: model.return,
 	   		 	 						     adults: model.adults,
-	   		 							     childs: model.children}});
+	   		 							     childs: model.children,
+	   		 							 	 roundTrip: isRoundTrip}});
 			} else{
 				console.log("isNotRoundTrip");
 	     	       	this.transitionTo('flights', { queryParams: { origin: model.origin, 
 	     			 						     destination: model.destination, 
 	     			        					     departure: model.departure,
 	     		 	 						     adults: model.adults,
-	     		 							     childs: model.children}});
+	     		 							     childs: model.children
+	     		 							 	 roundTrip: isRoundTrip}});
 			}
 
 

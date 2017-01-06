@@ -3,11 +3,11 @@
     <h3>{{flight.airline}}</h3>
     <div class="detail data">
       <span>Departing:</span> {{flight.origin}}  
-	<br/>{{date-Formatter flight.departure}}
+	<br/>{{date-formatter flight.departure null}}
     </div>
     <div class="detail data">
       <span>Arriving:</span>{{flight.destination}}  
-	<br/>{{date-Formatter flight.arrival}}
+	<br/>{{date-formatter flight.arrival null}}
     </div>
     <div class="detail data">
       {{flight-stops flight.stops}}
@@ -45,6 +45,6 @@
 				Show Details
 			{{/if}}
 		</button>
-	  	<button type="button"  class="btn btn-primary">Book Flight</button>	
+	  	<button type="button" {{action "selectFlight model.flightCode"}} class="btn btn-primary">Select Flight</button>	
 	</div>
   </article>

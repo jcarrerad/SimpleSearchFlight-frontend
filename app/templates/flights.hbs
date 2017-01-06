@@ -1,6 +1,26 @@
 <div class="jumbo">
-  <h3>Select your Flight</h3>
-  
+  <b>Your search:</b>
+   <div class="detail data">
+      <span>From:</span><b>{{origin.name}}</b>
+    </div>
+    <div class="detail data">
+      <span>To:</span><b>{{destination.name}}</b>
+    </div>
+    <div class="detail data">
+      <span>Departing on:</span>
+		{{date-formatter criteria.departure format="YYYY-MM-DD" }}
+    </div>
+     <div class="detail data">
+      <span>{{criteria.adults}} 
+      	{{#if (gt criteria.adults 1)}}adults{{else}}adult{{/if}}
+      	{{#if (gt criteria.children 0)}} {{criteria.children}} children {{/if}}
+      </span>
+    </div>
+
+
+    <h3>Select your Flight</h3>
+
+
   <!--<div class="left">
          <label for='order' class="sr-only">Order</label>
  	  <select id="order" class="form-control input-sm">
