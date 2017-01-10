@@ -69,6 +69,7 @@ export default Ember.Route.extend({
 		    
 		    
 		    if(departureDate < todaysDate){
+			console.log('invalid departure date');
 		    	model.errors.set('departure','Invalid departure date!');
 			return;
 		    }
@@ -96,19 +97,19 @@ export default Ember.Route.extend({
 			    
 	   	      	this.transitionTo('flights', { queryParams: { origin: model.origin, 
 	   			 						     destination: model.destination, 
-	   			        					 departure: model.departure,
+	   			        					     departure: model.departure,
 										     return: model.return,
 	   		 	 						     adults: model.adults,
-	   		 							     childs: model.children,
-	   		 							 	 roundTrip: isRoundTrip}});
+	   		 							     children: model.children,
+	   		 							     isRoundTrip: isRoundTrip}});
 			} else{
 				console.log("isNotRoundTrip");
 	     	       	this.transitionTo('flights', { queryParams: { origin: model.origin, 
 	     			 						     destination: model.destination, 
 	     			        					     departure: model.departure,
 	     		 	 						     adults: model.adults,
-	     		 							     childs: model.children,
-	     		 							 	 roundTrip: isRoundTrip}});
+	     		 							     children: model.children,
+	     		 							     isRoundTrip: isRoundTrip}});
 			}
 
 

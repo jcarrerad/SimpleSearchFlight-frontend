@@ -34,8 +34,8 @@
 	  	<div class="form-group col-xs-2">
 	  	        <label for='departure'>Departing</label>
 			  {{date-picker value=model.departure date=departure valueFormat='YYYY-MM-DD' class="form-control"}}
-			   {{#if model.errors.date}}
-			          <span class="help-block">{{model.errors.date}}</span>
+			   {{#if model.errors.departure}}
+			          <span class="help-block">{{model.errors.departure}}</span>
 			    {{/if}}
 	  	 </div>
 		 {{#if isRoundTrip}}
@@ -66,7 +66,6 @@
  			 	 action=(action (mut model.children))}}
 	 	  </div>
 	 </div>
-	  <!--<p>{{model.origin}} - {{model.destination}} - {{model.departure}} - {{model.adults}} -  {{model.children}}</p> -->
 	 <div>
 	  	<button {{action "routeToFlights" model}} class="button">Search Flights</button>
 	 </div>

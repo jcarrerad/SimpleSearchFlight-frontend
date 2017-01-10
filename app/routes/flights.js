@@ -1,7 +1,5 @@
 import Ember from 'ember';
 var Criteria = Ember.Object.extend({
-    departure : "",
-    return : "",
     adults: 0,
     children: 0,
     roundTrip: false,
@@ -24,12 +22,12 @@ export default Ember.Route.extend({
 	   adults: {
 	     refreshModel: true
 	   },
-	   childs: {
+	   children: {
 	     refreshModel: true
 	   },
-	   roundTrip: {
-	   		refreshModel:true
-	   	}
+	   isRoundTrip: {
+	   	refreshModel:true
+	   }
 	   
 	 },
 	model: function(params) {
@@ -39,10 +37,8 @@ export default Ember.Route.extend({
 		var destination = this.get('store').find('airport', params.destination);
 		var criteria = Criteria.create();
 		criteria.destination = params.destination;
-		criteria.departure = params.departure;
-		criteria.return = params.return;
 		criteria.adults = params.adults;
-		criteria.children = params.childs;
+		criteria.children = params.children;
 		criteria.roundTrip = params.roundTrip;
 		 return Ember.RSVP.hash({
             model: flights,
