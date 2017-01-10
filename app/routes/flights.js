@@ -33,8 +33,8 @@ export default Ember.Route.extend({
 	model: function(params) {
 		var flights = this.get('store').query('flight',{origin: params.origin,destination: params.destination,date: params.departure});
 		
-		var origin = this.get('store').find('airport', params.origin);
-		var destination = this.get('store').find('airport', params.destination);
+		var originRecord = this.get('store').find('airport', params.origin);
+		var destinationRecord = this.get('store').find('airport', params.destination);
 		var criteria = Criteria.create();
 		criteria.destination = params.destination;
 		criteria.adults = params.adults;
@@ -43,14 +43,12 @@ export default Ember.Route.extend({
 		 return Ember.RSVP.hash({
             model: flights,
             criteria: criteria,
-            origin: origin,
-            destination: destination
         });
     },setupController: function(controller, hash) {
         controller.set("model", hash.model);
         controller.set("criteria", hash.criteria);
-        controller.set("origin", hash.origin);
-        controller.set("destination", hash.destination);
+        controller.set("originRecord", hash.originRecord);
+        controller.set("destinationRecord", hash.destinationRecord);
     },
 	actions: {
 	    selectFlight(flight){

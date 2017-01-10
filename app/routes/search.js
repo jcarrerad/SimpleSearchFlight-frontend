@@ -53,10 +53,12 @@ export default Ember.Route.extend({
 		    var isRoundTrip = this.controller.get('isRoundTrip');
 		    console.log(isRoundTrip);
 			  
+		    console.log(model.origin);
 		    if(model.origin === ''){
 		    	model.errors.set('flyFrom','Select an origin.');
 			return;
 		    }
+		    console.log(model.destination);
 		    if(model.destination === ''){
 		    	model.errors.set('flyTo','Select a destination.');
 			return;
