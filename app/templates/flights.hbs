@@ -1,31 +1,33 @@
 <div class="jumbo">
-  <b>Your search:</b>
-   <div class="detail data">
-      <span>From:</span><b>{{originRecord.name}}</b>
-    </div>
-    <div class="detail data">
-      <span>To:</span><b>{{destinationRecord.name}}</b>
-    </div>
-    <div class="detail data">
-      <span>Departing on:</span>
+	<b>Your search:</b>
+	<div class="detail data">
+		<span>From:</span><b>{{originRecord.name}}</b>
+	</div>
+	<div class="detail data">
+		<span>To:</span><b>{{destinationRecord.name}}</b>
+	</div>
+	<div class="detail data">
+		<span>Departing on:</span>
 		{{date-formatter criteria.departure format="YYYY-MM-DD" }}
-    </div>
-     <div class="detail data">
-      <span>{{criteria.adults}} 
-      	{{#if (gt criteria.adults 1)}}adults{{else}}adult{{/if}}
-      	{{#if (gt criteria.children 0)}} {{criteria.children}} children {{/if}}
-      </span>
-    </div>
+	</div>
+	<div class="detail data">
+		<span>{{criteria.adults}} 
+			{{#if (gt criteria.adults 1)}}adults{{else}}adult{{/if}}
+			{{#if (gt criteria.children 0)}} {{criteria.children}} children {{/if}}
+		</span>
+	</div>
 
-    {{#if (eq criteria.selectedFlight '')}}
-    		<h3>Select your Flight</h3>
-    {{else}}
-    		<h3>Selected Flight</h3>
-		{{criteria.selectedFlight}}
-    {{/if}}
-
-
-
+	{{#if (eq selection.departureFlight '')}}
+		<h3>Select your Departure</h3>
+	{{else}}
+		<h3>Selected Departure</h3>
+		<div class="detail data">
+			<span>Flight#:</span><b>{{selection.departureFlight}}</b>
+		</div>
+		<div class="detail data">
+			<span>Cost:</span><b>${{money-formatter selection.departureCost}}</b>
+		</div>
+	{{/if}}
 </div>
 
 {{flight-listing flights=model selectFlight="selectFlight"}}  

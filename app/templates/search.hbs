@@ -1,73 +1,74 @@
 <div class="jumbo">
-  <h3>Select your destination and traveling dates.</h3>
+	<h3>Select your destination and traveling dates.</h3>
 </div>
 
-	<div class="row">
-		<div class="form-group col-xs-4">
-		        <label for='flyFrom'>Round Trip</label>
-			  {{input type="checkbox" checked=isRoundTrip}}
-	      </div>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label for='flyFrom'>Round Trip</label>
+		{{input type="checkbox" checked=isRoundTrip}}
 	</div>
-	<div class="row">
-		<div class="form-group col-xs-4">
-		        <label for='flyFrom'>Flying from</label>
-			   {{#my-auto-complete options=codes selectedValue=model.origin placeHolderText="Find by code or name" 					inputClass="my-auto-complete" noMesssagePlaceHolderText="Nothing found" as |resultado|}}
-			     <p>{{resultado.code}} - {{resultado.text}}</p>
-			   {{/my-auto-complete}}
-			   {{#if model.errors.flyFrom}}
-			          <span class="help-block">{{model.errors.flyFrom}}</span>
-			    {{/if}}
-			
-		 </div>
-		 <div class="form-group col-xs-4">
-			 <label for='flyTo'>Flying to</label>
-  	     		   {{#my-auto-complete options=codes selectedValue=model.destination placeHolderText="Find by code or name" 					inputClass="my-auto-complete" noMesssagePlaceHolderText="Nothing found" as |resultado|}}
-  			     <p>{{resultado.code}} - {{resultado.text}}</p>
-  			   {{/my-auto-complete}}
-			   {{#if model.errors.flyTo}}
-			          <span class="help-block">{{model.errors.flyTo}}</span>
-			    {{/if}}
-		  </div>
-	 </div>
-	 
-	 <div class="row">
-	  	<div class="form-group col-xs-2">
-	  	        <label for='departure'>Departing</label>
-			  {{date-picker value=model.departure date=departure valueFormat='YYYY-MM-DD' class="form-control"}}
-			   {{#if model.errors.departure}}
-			          <span class="help-block">{{model.errors.departure}}</span>
-			    {{/if}}
-	  	 </div>
-		 {{#if isRoundTrip}}
-		  	<div class="form-group col-xs-2">
-		  	        <label for='returning'>Returning</label>
-				  {{date-picker value=model.return date=return valueFormat='YYYY-MM-DD' class="form-control"}}
-				   {{#if model.errors.return}}
-				          <span class="help-block">{{model.errors.return}}</span>
-				    {{/if}}
-		  	 </div>
-		 {{/if}}
-	 </div>
-	 <div class="row">
-		 <div class="form-group col-xs-1">
-			 <label for='flyTo'>Adults</label>
-			 {{select-list content=adults 
-				 value=model.adults 
-				 class="form-control" 
-				 selection=selectedAdults
-			 	 action=(action (mut model.adults))}}
-		  </div>
-	 	 <div class="form-group col-xs-1">
-	 		 <label for='flyTo'>Children</label>
- 			 {{select-list content=children 
- 				 value=model.children 
- 				 class="form-control" 
- 				 selection=selectedChildren
- 			 	 action=(action (mut model.children))}}
-	 	  </div>
-	 </div>
-	 <div>
-	  	<button {{action "routeToFlights" model}} class="button">Search Flights</button>
-	 </div>
+</div>
+<div class="row">
+	<div class="form-group col-xs-4">
+		<label for='flyFrom'>Flying from</label>
+		{{#my-auto-complete options=codes selectedValue=model.origin placeHolderText="Find by code or name" 					inputClass="my-auto-complete" noMesssagePlaceHolderText="Nothing found" as |resultado|}}
+			<p>{{resultado.code}} - {{resultado.text}}</p>
+		{{/my-auto-complete}}
+		
+		{{#if model.errors.flyFrom}}
+			<span class="help-block">{{model.errors.flyFrom}}</span>
+		{{/if}}
+	</div>
+	<div class="form-group col-xs-4">
+		<label for='flyTo'>Flying to</label>
+		{{#my-auto-complete options=codes selectedValue=model.destination placeHolderText="Find by code or name" 					inputClass="my-auto-complete" noMesssagePlaceHolderText="Nothing found" as |resultado|}}
+			<p>{{resultado.code}} - {{resultado.text}}</p>
+		{{/my-auto-complete}}
+		
+		{{#if model.errors.flyTo}}
+			<span class="help-block">{{model.errors.flyTo}}</span>
+		{{/if}}
+	  </div>
+ </div>
+ 
+ <div class="row">
+	<div class="form-group col-xs-2">
+		<label for='departure'>Departing</label>
+		{{date-picker value=model.departure date=departure valueFormat='YYYY-MM-DD' class="form-control"}}
+		{{#if model.errors.departure}}
+			<span class="help-block">{{model.errors.departure}}</span>
+		{{/if}}
+	</div>
+	{{#if isRoundTrip}}
+		<div class="form-group col-xs-2">
+			<label for='returning'>Returning</label>
+			{{date-picker value=model.return date=return valueFormat='YYYY-MM-DD' class="form-control"}}
+			{{#if model.errors.return}}
+				<span class="help-block">{{model.errors.return}}</span>
+			{{/if}}
+		</div>
+	 {{/if}}
+ </div>
+ <div class="row">
+	<div class="form-group col-xs-1">
+		<label for='flyTo'>Adults</label>
+		{{select-list content=adults 
+			value=model.adults 
+			class="form-control" 
+			selection=selectedAdults
+			action=(action (mut model.adults))}}
+	</div>
+	<div class="form-group col-xs-1">
+		<label for='flyTo'>Children</label>
+		{{select-list content=children 
+			value=model.children 
+			class="form-control" 
+			selection=selectedChildren
+			action=(action (mut model.children))}}
+	</div>
+</div>
+<div>
+	<button {{action "routeToFlights" model}} class="button">Search Flights</button>
+</div>
 	  
 	 

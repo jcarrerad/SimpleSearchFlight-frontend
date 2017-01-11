@@ -10,9 +10,10 @@ export default DS.Model.extend({
 	departure: DS.attr('date'),
 	arrival: DS.attr(),
 	stops: DS.attr(),
-	price: DS.attr(),
+	price: DS.attr('string'),
 	departureTime: DS.attr(),
 	arrivalTime: DS.attr('date'),
-	travelTime: DS.attr()
+	travelTime: DS.attr(),
+	aircraft: DS.attr()
 	
 });	

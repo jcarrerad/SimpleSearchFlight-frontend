@@ -26,10 +26,10 @@ export default Ember.Route.extend({
               console.log('Found ' + airports.get('length'));
               airports.forEach(function(item){
 			  var element = item.get("data");
-                console.log(element);
-                var text = element.code + " - " + element.name;
-                codes.pushObject(Airport.create({code: element.code, text: element.name}));
-             });
+              console.log(element);
+              var text = element.code + " - " + element.name;
+              codes.pushObject(Airport.create({code: element.code, text: element.name}));
+              });
         });
 
 
@@ -56,66 +56,64 @@ export default Ember.Route.extend({
 		    console.log(model.origin);
 		    if(model.origin === ''){
 		    	model.errors.set('flyFrom','Select an origin.');
-			return;
+		    	return;
 		    }
 		    console.log(model.destination);
 		    if(model.destination === ''){
 		    	model.errors.set('flyTo','Select a destination.');
-			return;
+		    	return;
 		    }
 		    
 		    if(model.departure === ''){
 		    	model.errors.set('departure','Select a date.');
-			return;
+		    	return;
 		    }
 		    
-		    
 		    if(departureDate < todaysDate){
-			console.log('invalid departure date');
+		    	console.log('invalid departure date');
 		    	model.errors.set('departure','Invalid departure date!');
-			return;
+		    	return;
 		    }
 		 
 		    if(model.origin === model.destination){
-			 model.errors.set('flyFrom','Choose a different origin.');
-			 model.errors.set('flyTo','Choose a different destination.');
-			 console.log(model.errors.flyFrom);
-			 return;
+		    	model.errors.set('flyFrom','Choose a different origin.');
+		    	model.errors.set('flyTo','Choose a different destination.');
+		    	console.log(model.errors.flyFrom);
+		    	return;
 		 	}  
 			
 			if(isRoundTrip){
-			    console.log("isRoundTrip");
+				console.log("isRoundTrip");
 			    var returnDate = new Date(Date.parse(model.return.replace(/-/g, " ")));
 			    
 			    if(model.return === ''){
 			    	model.errors.set('return','Select a date.');
-				return;
+			    	return;
 			    }
 			    
 	  		    if(returnDate < departureDate){
 	  		    	model.errors.set('return','Invalid return date!');
-	  			return;
+	  		    	return;
 	  		    }
 			    
-	   	      	this.transitionTo('flights', { queryParams: { origin: model.origin, 
-	   			 						     destination: model.destination, 
-	   			        					     departure: model.departure,
-										     return: model.return,
-	   		 	 						     adults: model.adults,
-	   		 							     children: model.children,
-	   		 							     isRoundTrip: isRoundTrip}});
+	   	      	this.transitionTo('flights', { queryParams: { 
+	   	      		origin: model.origin, 
+	   	      		destination: model.destination, 
+	   	      		departure: model.departure,
+	   	      		return: model.return,
+	   	      		adults: model.adults,
+	   	      		children: model.children,
+	   	      		isRoundTrip: isRoundTrip}});
 			} else{
 				console.log("isNotRoundTrip");
-	     	       	this.transitionTo('flights', { queryParams: { origin: model.origin, 
-	     			 						     destination: model.destination, 
-	     			        					     departure: model.departure,
-	     		 	 						     adults: model.adults,
-	     		 							     children: model.children,
-	     		 							     isRoundTrip: isRoundTrip}});
+				this.transitionTo('flights', { queryParams: { 
+					origin: model.origin, 
+					destination: model.destination, 
+					departure: model.departure,
+					adults: model.adults,
+					children: model.children,
+					isRoundTrip: isRoundTrip}});
 			}
-
-
-	       
 	    }
     }
 
