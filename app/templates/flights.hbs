@@ -10,6 +10,12 @@
 		<span>Departing on:</span>
 		{{date-formatter criteria.departure format="YYYY-MM-DD" }}
 	</div>
+	{{#if (eq criteria.roundTrip 'true')}}
+		<div class="detail data">
+			<span>Returning on:</span>
+			{{date-formatter criteria.return format="YYYY-MM-DD" }}
+		</div>
+	{{/if}}
 	<div class="detail data">
 		<span>{{criteria.adults}} 
 			{{#if (gt criteria.adults 1)}}adults{{else}}adult{{/if}}
@@ -25,10 +31,19 @@
 			<span>Flight#:</span><b>{{selection.departureFlight}}</b>
 		</div>
 		<div class="detail data">
-			<span>Cost:</span><b>${{money-formatter selection.departureCost}}</b>
+			<span>Total:</span><b>${{money-formatter selection.totalCost}}</b>
 		</div>
+		<div>
+			<button type="button" {{action "clearSelectedFlight"}} class="btn btn-primary">Clear Selection</button>
+			{{#if (eq criteria.roundTrip 'false')}}
+				<button type="button" class="btn btn-primary">Book Now</button>
+			{{/if}}
+		</div>
+		
 	{{/if}}
 </div>
 
-{{flight-listing flights=model selectFlight="selectFlight"}}  
+{{#if (eq selection.departureFlight '')}}
+	{{flight-listing flights=model selectFlight="selectFlight"}}  
+{{/if}}
 
