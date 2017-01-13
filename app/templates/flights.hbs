@@ -1,5 +1,5 @@
 <div class="jumbo">
-	<b>Your search:</b>
+	<h3>Your search:</h3>
 	<div class="detail data">
 		<span>From:</span><b>{{originRecord.name}}</b>
 	</div>
@@ -23,19 +23,38 @@
 		</span>
 	</div>
 
-	{{#if (eq selection.departureFlight '')}}
-		<h3>Select your Departure</h3>
+	{{#if (eq selection.departureFlight null)}}
+		<h3>Select your Flight</h3>
 	{{else}}
-		<h3>Selected Departure</h3>
+		<h3>Your selection:</h3>
 		<div class="detail data">
-			<span>Flight#:</span><b>{{selection.departureFlight}}</b>
+			<span>Departure:</span>
 		</div>
+		<div class="detail data">
+			Flight <b>{{selection.departureFlight.id}}</b>
+			operated by <b>{{selection.departureFlight.airline}} </b>
+			flying from <b>{{selection.departureFlight.origin}}</b>
+			to <b>{{selection.departureFlight.destination}}</b>
+			on <b>{{date-formatter selection.departureFlight.departure null}} </b>
+		</div>
+		{{#unless (eq selection.returnFlight null)}}
+			<div class="detail data">
+				<span>Return:</span>
+			</div>
+			<div class="detail data">
+				Flight <b>{{selection.returnFlight.id}}</b>
+				operated by <b>{{selection.returnFlight.airline}} </b>
+				flying from <b>{{selection.returnFlight.origin}}</b>
+				to <b>{{selection.returnFlight.destination}}</b>
+				on <b>{{date-formatter selection.returnFlight.departure null}} </b>
+			</div>
+		{{/unless}}
 		<div class="detail data">
 			<span>Total:</span><b>${{money-formatter selection.totalCost}}</b>
 		</div>
 		<div>
 			<button type="button" {{action "clearSelectedFlight"}} class="btn btn-primary">Clear Selection</button>
-			{{#if (eq criteria.roundTrip 'false')}}
+			{{#if selection.enableBooking}}
 				<button type="button" class="btn btn-primary">Book Now</button>
 			{{/if}}
 		</div>
@@ -43,7 +62,7 @@
 	{{/if}}
 </div>
 
-{{#if (eq selection.departureFlight '')}}
+{{#unless selection.enableBooking}}
 	{{flight-listing flights=model selectFlight="selectFlight"}}  
-{{/if}}
+{{/unless}}
 
